@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script id='varget' data-get='<%= widgets %>'>
+        var widgets = document.getElementById('varget').dataset.get.split(',')
+        console.log(widgets)
+        $(document).ready(function() {
+            setInterval(async function() {
+                var data = ''
+                var i = 0
+                widgets.forEach(async e => {
+                    i = i + 1
+                    await $.ajax({url: '/' + e,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: data,
+                        success: function(res){
+                            var div = e.split('/')
+                            console.log(div[0])
+                            console.log(res)
+                            if (div[0] === "Temperature") {
+                                $("#Temperature"+div[1]).text(res[0] + "°C, ressenti " + res[1] + "°C")
+                            } else if (div[0] === "trade") {
+                                $("#trade"+div[1]).text("EUR: " + Math.floor(res.EUR*100)/100 +
+                                    " USD: " + Math.floor(res.USD*100)/100 +
+                                    " GBP: " + Math.floor(res.GBP*100)/100 +
+                                    " CHF: " + Math.floor(res.CHF*100)/100)
+                            } else if (div[0] === "youtubeAbo") {
+                                $("#youtubeAbo"+div[1]).text("Nombres d'abonnés: " + res.subscriberCount
+                                + ", nombres de vues: " + res.viewCount)
+                            } else if (div[0] === "youtubeView") {
+                                $("#youtubeView"+div[1]).text("Vues: " + res.viewCount
+                                + ", Likes: " + res.likeCount
+                                + ", Dislikes: " + res.dislikeCount)
+                            } else if(div[0] === "steam") {
+                                $("#steam"+div[1]).text(res.name + ": " + res.player_count + " joueurs")
+                            }
+                        },
+                        error: function() {alert('Server communication error')}
+                    })
+                });
+            }, 2000)
+        })
+    </script>
+</head>
+
+<body id="body">
+    <nav>
+        <ul>
+            <li><h1>Dashboard@Epitech</h1></li>
+            <li><div><%= name %> Dashboard</div></li>
+            <li><a href="/widget">Widgets</a></li>
+            <li><div>
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit">Log Out</button>
+                    </form>
+            </div></li>
+        </ul>
+    </nav>
+    <% widgets.forEach((item) => { %>
+        <% tmp = item.split("/") %>
+        <% if (tmp[0] == "Temperature") { %>
+            <div class="card">
+                <%= tmp[0] %> <%= tmp[1] %>:
+                <div id="<%= tmp[0] %><%= tmp[1] %>">Waiting data...</div>
+            </div>
+        <% } else if (tmp[0] == "trade") { %>
+            <div class='card'>
+                <%= tmp[0] %> <%= tmp[1] %>:
+                <div id="<%= tmp[0] %><%= tmp[1] %>">Waiting data...</div>
+            </div>
+        <% } else if (tmp[0] == "youtubeAbo") { %>
+            <div class='card'>
+                Détails de la chaine: <%= tmp[1] %>
+                <div id="<%= tmp[0] %><%= tmp[1] %>">Waiting data...</div>
+            </div>
+        <% } else if (tmp[0] == "youtubeView") { %>
+            <div class='card'>
+                Vues, like et dislike de: <%= tmp[1] %>
+                <div id="<%= tmp[0] %><%= tmp[1] %>">Waiting data...</div>
+            </div>
+        <% } else if (tmp[0] == "steam") { %>
+            <div class='card'>
+                <div id="<%= tmp[0] %><%= tmp[1] %>">Waiting data...</div>
+            </div>
+    <% }}) %>
+    
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  mongo-db:
+    image: mongo:latest
+    container_name: mongo-db
+    command: mongod --oplogSize 128
+    networks:
+      - vnet
+    expose:
+      - 27017
+    volumes:
+      - db-data:/data/db
+
+  dashboard:
+    build:
+      context: .
+    container_name: dashboard-app
+    ports:
+      - 8080:8080
+    networks:
+      - vnet
+    depends_on:
+      - mongo-db
+    environment:
+      - MONGO_URL=mongo-db
+
+volumes:
+  db-data:
+
+networks:
+  vnet:

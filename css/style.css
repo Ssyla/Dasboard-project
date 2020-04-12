@@ -1,0 +1,77 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+nav{
+    background: #f9e076;
+    padding: 10px 10px;
+}
+
+nav ul{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+nav li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
+nav h1{
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    padding-left: 30px;
+    padding-right: 25px;
+}
+
+nav a{
+    color: #333;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+nav div{
+    color: #333;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+nav button{
+    color: #333;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* main, header{
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 10px;
+    color: #333;
+} */
+
+.card{
+    margin: 20px;
+    padding: 10px;
+    background: royalblue;
+    font-size: 18px;
+    color: seashell;
+    text-align: center;
+}
+
+li{
+    list-style: none;
+}
+
+.margin{
+    margin-left: 25%;
+}

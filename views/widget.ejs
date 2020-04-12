@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Widget</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><h1>Dashboard@Epitech</h1></li>
+            <li><a href="/home"><%= name %> Dashboard</a></li>
+            <li><div>Widgets</div></li>
+            <li><div>
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button type="submit">Log Out</button>
+                </form>
+            </div></li>
+        </ul>
+    </nav>
+    <ul>
+        <li class="card">Météo
+            <form action="/addW/Temperature?_method=PATCH" method="POST">
+                <label for="temperature">Température à: </label>
+                <input type="text" id="temperature" name="param" value="Lyon" required>
+                <button type="submit">Add/Remove widget</button>
+            </form>
+        </li>
+        <li class="card">Taux d'échanges
+            <form action="/addW/trade?_method=PATCH" method="POST">
+                <label for="trading">Monnaie:</label>
+                <input type="text" id="trading" name="param" value="EUR" required>
+                <button type="submit">Add/Remove widget</button>
+            </form>
+        </li>
+        <li class="card">Youtube
+            <form action="/addW/youtubeAbo?_method=PATCH" method="POST">
+                <label for="youtubeAbo">Chaine:</label>
+                <input type="text" id="youtubeAbo" name="param" value="Corobizar" required>
+                <button type="submit">Add/Remove widget</button>
+            </form>
+            <form action="/addW/youtubeView?_method=PATCH" method="POST">
+                <label for="youtubeView">ID d'une video:</label>
+                <input type="text" id="youtubeView" name="param" value="iLiIEAPjx2o" required>
+                <button type="submit">Add/Remove widget</button>
+            </form>
+        </li>
+        <li class="card">Steam
+            <form action="/addW/steam?_method=PATCH" method="POST">
+                <label for="steamPC">Steam appID: </label>
+                <input type="text" id="steamPC" name="param" value="582010" required>
+                <button type="submit">Add/Remove widget</button>
+            </form>
+        </li>
+        
+    <div>Activated widgets:</div>
+    <ul>
+        <% user.forEach(function(item) { %>
+            <li><%= item %></li>
+        <% }) %>
+    </ul>
+</body>
+</html>

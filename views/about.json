@@ -1,0 +1,80 @@
+{
+    "client ": {
+        "host": "10.101.53.35"
+    },
+    "server ": {
+        "current_time ": 1531680780,
+        "services ": [
+            {
+                "name": "weather",
+                "widgets ": [
+                    {
+                        "name": "city_temperature",
+                        "description ": "Display  temperature  for a city",
+                        "params ": [
+                            {
+                                "name": "city",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "exchange_rates",
+                "widgets ": [
+                    {
+                        "name": "currency",
+                        "description ": "Display exchange rates for a currency",
+                        "params ": [
+                            {
+                                "name": "currency",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "youtube",
+                "widgets": [
+                    {
+                        "name": "channel_data",
+                        "description": "display subsrciber count and view count of selected channel",
+                        "params": [
+                            {
+                                "name": "channel_name",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "video_data",
+                        "description": "display number of views, like ans dislikes of selected video",
+                        "params": [
+                            {
+                                "name": "video_ID",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "steam",
+                "widgets": [
+                    {
+                        "name": "player_count",
+                        "description": "display the current player count of selected game",
+                        "params": [
+                            {
+                                "name": "game_ID",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
